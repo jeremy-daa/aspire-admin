@@ -48,7 +48,7 @@
   position: absolute;
   bottom: 0;
   transform: translateY(100%) translateX(-20%);
-  background: #FEA100;
+  background: #04ac3c;
   border-radius: .4em;
   color: #fff;
   transition: .3s;
@@ -64,7 +64,7 @@
   border-radius: 6px;
   outline: none;
   border: none;
-  background: #9b6200;
+  background: #114411;
   color: #fff;
   display: flex;
   align-items: center;
@@ -73,7 +73,7 @@
 }
 .header__admin__btn:hover{
   background: #fff;
-  color: #9b6200;
+  color: #114411;
 }
 
 .sidebar{

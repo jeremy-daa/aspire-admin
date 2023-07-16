@@ -30,7 +30,7 @@ export default function LoginForm() {
         }
 
         setIsLoading(true)
-        fetch('https://test.yuyana.com/admin/login', {
+        fetch('https://test.oneloveethiopiatour.com/api/administrator/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
