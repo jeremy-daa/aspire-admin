@@ -16,6 +16,9 @@ import activeActivityReducer from "./activeActivitySlice";
 import activeTourReducer from "./activeTourSlice";
 import activePackageReducer from "./activePackageSlice";
 import activeBookingReducer from "./activeBookingSlice";
+import eventModalToggleReducer from "./eventModalToggleSlice";
+import sortEventsReducer from "./sortEventsSlice";
+import eventAddModalToggleReducer from "./eventAddModalToggleSlice";
 
 export const rootReducer = combineReducers({
   // auth: authReducer,
@@ -35,6 +38,9 @@ export const rootReducer = combineReducers({
   activeTour: activeTourReducer,
   activePackage: activePackageReducer,
   activeBooking: activeBookingReducer,
+  eventModalToggle: eventModalToggleReducer,
+  sortEvents: sortEventsReducer,
+  eventAddModalToggle: eventAddModalToggleReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

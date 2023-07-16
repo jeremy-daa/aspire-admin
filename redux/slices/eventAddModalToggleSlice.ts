@@ -2,30 +2,30 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
 
 // Define a type for the slice state
-interface BlogModalToggleState {
+interface EventAddModalToggleState {
   value: boolean;
 }
 
 // Define the initial state using that type
-const initialState: BlogModalToggleState = {
+const initialState: EventAddModalToggleState = {
   value: false,
 };
 
-export const blogModalToggleSlice = createSlice({
-  name: "blogModalToggle",
+export const eventAddModalToggleSlice = createSlice({
+  name: "eventAddModalToggle",
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    toggleBlogModal: (state) => {
+    toggleEventAddModal: (state) => {
       state.value = !state.value;
     },
   },
 });
 
-export const { toggleBlogModal } = blogModalToggleSlice.actions;
+export const { toggleEventAddModal } = eventAddModalToggleSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectBlogModalToggle = (state: RootState) =>
-  state.blogModalToggle.value;
+export const selectEventModalToggle = (state: RootState) =>
+  state.eventAddModalToggle.value;
 
-export default blogModalToggleSlice.reducer;
+export default eventAddModalToggleSlice.reducer;
