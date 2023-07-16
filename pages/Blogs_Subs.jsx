@@ -6,9 +6,11 @@ import Link from 'next/link'
 
 export default function Blogs_Subs() {
     const [blogs, setBlogs] = useState(0)
+    const [events, setEvents] = useState(0)
     // const [packages, setPackages] = useState(0)
 
-    const { data: articlesData, loading: articlesLoading, error: articlesError } = useFetch("blogs")
+    const { data: articlesData, loading: articlesLoading, error: articlesError } = useFetch("news")
+    const { data: eventsData, loading: eventsLoading, error: eventsError } = useFetch("events")
     // const { data: packagesData, loading: packagesLoading, error: packagesError } = useFetch("packages")
 
     useEffect(() => {
@@ -16,11 +18,15 @@ export default function Blogs_Subs() {
             setBlogs(articlesData.length)
         }
 
+        if (eventsData) {
+            setEvents(eventsData.length)
+        }
+
         // if (packagesData) {
         //     setPackages(packagesData.length)
         // }
 
-    }, [ articlesData])
+    }, [ articlesData, eventsData ])
 
   return (
     <div className={style.mainbody__container} >
@@ -29,6 +35,12 @@ export default function Blogs_Subs() {
                 <div className={style.mainbody__card}>
                     <h1>{blogs}</h1>
                     <p>Blogs Written</p>
+                </div>
+            </Link>
+            <Link href='/events' style={{flex: 1, textDecoration: "none"}} title='events'>
+                <div className={style.mainbody__card}>
+                    <h1>{events}</h1>
+                    <p>Upcoming Events</p>
                 </div>
             </Link>
         </div>

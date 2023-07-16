@@ -13,7 +13,7 @@ export default function BlogSearch() {
 
     const [filteredData, setFilteredData] = useState([]);
     const [word, setWord] = useState("");
-    const { data, loading, error } = useFetch("blogs")
+    const { data, loading, error } = useFetch("news")
     
 
 

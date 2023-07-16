@@ -7,7 +7,7 @@ import BlogLoading from './BlogLoading';
 
 
 export default function BlogPaginator() {
-  const { data, loading, error } = useFetch("blogs")
+  const { data, loading, error } = useFetch("news")
 
     if (loading) return <BlogLoading />;
     if (error) return <p>Error :(</p>;
