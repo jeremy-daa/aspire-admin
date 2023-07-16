@@ -7,7 +7,7 @@ import { IoCaretForward } from 'react-icons/io5'
 import { AiFillDashboard } from 'react-icons/ai'
 import { GiNewspaper, GiSurferVan } from 'react-icons/gi'
 import { FaUsers } from 'react-icons/fa'
-import { MdArticle } from 'react-icons/md'
+import { MdArticle, MdEvent } from 'react-icons/md'
 import { GoPackage } from 'react-icons/go'
 
 export default function Sidebar() {
@@ -22,6 +22,9 @@ export default function Sidebar() {
                 break
             case '/blog':
                 setActive('blog')
+                break
+            case '/events':
+                setActive('events')
                 break
             // case '/packages':
             //     setActive('packages')
@@ -51,6 +54,12 @@ export default function Sidebar() {
                 <div className={`${style.sidebar__item} ${active==='blog' && style.sidebar__item__active} `}>
                     <MdArticle style={!isOpen && {flex: 1}} size={20}/>
                     {isOpen && <p style={{transition: .3}}>Blog</p>}
+                </div>
+            </Link>
+            <Link href='/events' onClick={() => setActive('events')} style={{textDecoration: "none"}} title="events">
+                <div className={`${style.sidebar__item} ${active==='events' && style.sidebar__item__active} `}>
+                    <MdEvent style={!isOpen && {flex: 1}} size={20}/>
+                    {isOpen && <p style={{transition: .3}}>Events</p>}
                 </div>
             </Link>
             {/* <Link href='/packages' onClick={() => setActive('packages')} style={{textDecoration: "none"}} title="packages">
