@@ -61,7 +61,7 @@ export default function EditBlogModal() {
             setErr("")
             const image = json.secure_url
             const body = { title, image, snippet, markdown }
-            const data = postReq("blogs", body, token)
+            const data = postReq("news", body, token)
             if(data) console.log(data)
             
             setTitle("")

@@ -8,7 +8,7 @@ export default function Blogs_Subs() {
     const [blogs, setBlogs] = useState(0)
     // const [packages, setPackages] = useState(0)
 
-    const { data: articlesData, loading: articlesLoading, error: articlesError } = useFetch("blogs")
+    const { data: articlesData, loading: articlesLoading, error: articlesError } = useFetch("news")
     // const { data: packagesData, loading: packagesLoading, error: packagesError } = useFetch("packages")
 
     useEffect(() => {
