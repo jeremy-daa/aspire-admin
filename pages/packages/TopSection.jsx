@@ -11,8 +11,8 @@ export default function TopSection() {
   return (
     <div className={`${style.top_section}`}>
         <div>
-            <h1 className={`${style.heading}`}>Tour Packages</h1>
-            <p className={style.heading__text}>List of all Tour Packages</p>
+            <h1 className={`${style.heading}`}>Packages</h1>
+            <p className={style.heading__text}>List of all Packages</p>
         </div>
 
         <div className={`${style.top_section_r}`}>

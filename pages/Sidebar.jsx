@@ -26,9 +26,9 @@ export default function Sidebar() {
             case '/events':
                 setActive('events')
                 break
-            // case '/packages':
-            //     setActive('packages')
-            //     break
+            case '/packages':
+                setActive('packages')
+                break
             default:
                 break
         }
@@ -62,12 +62,12 @@ export default function Sidebar() {
                     {isOpen && <p style={{transition: .3}}>Events</p>}
                 </div>
             </Link>
-            {/* <Link href='/packages' onClick={() => setActive('packages')} style={{textDecoration: "none"}} title="packages">
+            <Link href='/packages' onClick={() => setActive('packages')} style={{textDecoration: "none"}} title="packages">
                 <div className={`${style.sidebar__item} ${active==='packages' && style.sidebar__item__active} `}>
                     <GoPackage style={!isOpen && {flex: 1}} size={20}/>
                     {isOpen && <p style={{transition: .3}}>Packages</p>}
                 </div>
-            </Link> */}
+            </Link>
 
 
             <hr />

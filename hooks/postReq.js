@@ -9,7 +9,7 @@ const usePost = async (url, body, token) => {
     }
 
     try {
-        const res = await fetch(`https://test.yuyana.com/${url}`, config);
+        const res = await fetch(`https://test.oneloveethiopiatour.com/api/${url}`, config);
         const json = await res.json();
         const data = json.data;
         return data;

@@ -24,26 +24,9 @@ export default function EditBlogModal() {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
-    const [type, setType] = useState("local")
-    const [total_no_of_days, setTotalNoOfDays] = useState(0)
-    const [tour_ids, setTourIds] = useState([])
-    const [price, setPrice] = useState(0)
+    const [aglp, setAglp] = useState(0)
+    
     // const [markdown, setMarkdown] = useState("")
-
-    const { data, loading, error } = useFetch("tours")
-
-
-
-    const addTourId = () => {
-        const tour_id = document.getElementById("tour_id").value
-        if(tour_id === "") {
-            setErr("Please fill in all fields (tour)")
-            return
-        }
-        setErr("")
-        setTourIds([...tour_ids, tour_id])
-    }
-
 
     const token = useAppSelector((state) => state.login.admin)
 
@@ -51,23 +34,44 @@ export default function EditBlogModal() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        if(name === "" || type === "" || description === "" || tour_ids.length === 0 || total_no_of_days === 0 || price === 0) {
+        if(name === "" || description === "" || aglp === 0) {
             setErr("Please fill in all fields")
             return
         }
 
-        setErr("")
-        const body = { name, type, description, tour_ids, total_no_of_days, price }
-        const data = postReq("packages", body, token)
-        if(data) console.log(data)
-        
-        setName("")
-        setDescription("")
-        setType("local")
-        setTotalNoOfDays(0)
-        setTourIds([])
-        setPrice(0)
-        dispatch(toggleBlogAddModal())
+
+        // @ts-ignore
+        const img = document.getElementById("image").files[0]
+        const imgData = new FormData()
+        imgData.append('file', img)
+        imgData.append('upload_preset', 'aspire')
+
+        const res = await fetch('https://api.cloudinary.com/v1_1/drp73bqti/image/upload', {
+            method: 'POST',
+            body: imgData
+        })
+        if(!res.ok) {
+            setErr("Please upload an image")
+            return
+        }
+        const json = await res.json()
+
+        if(json.secure_url === "") {
+            setErr("Please upload an image")
+            return
+        }
+        if(json.secure_url !== "") {
+            setErr("")
+            const image = json.secure_url
+            const body = { name, image, description, aglp}
+            const data = postReq("packages", body, token)
+            if(data) console.log(data)
+            
+            setName("")
+            setDescription("")
+            setAglp(0)
+            dispatch(toggleBlogAddModal())
+        }
     }
 
     // if(loading) console.log("loading")
@@ -92,48 +96,23 @@ export default function EditBlogModal() {
                                 <input placeholder="Enter Tour Name" type="text" id="name" value={name} onChange={(e)=> setName(e.target.value)} />
                             </div>
                             <div className={style.blogModal__form__row}>
-                                <label>Type</label>
-                                <select name="type" id="type" onChange={(e)=> setType(e.target.value)}>
-                                    <option value="local" >Local</option>
-                                    <option value="international" >International</option>
-                                </select>
+                                <label>Image Link</label>
+                                <input placeholder="Enter Article Cover Image Link" type="file" accept="image/*" id="image" />
                             </div>
                             <div className={style.blogModal__form__row}>
                                 <label>Description</label>
                                 <textarea placeholder="Enter Tour Description" id="description" value={description} onChange={(e)=> setDescription(e.target.value)} ></textarea>
                             </div>
                             <div className={style.blogModal__form__row}>
-                                <label>Number of Days</label>
-                                <input placeholder="Enter Number of Days" type="text" id="total_no_of_days" value={total_no_of_days} onChange={(e)=> setTotalNoOfDays(e.target.value)} />
+                                <label>AGLP</label>
+                                <input placeholder="Enter AGLP Points" type="text" id="aglp" value={aglp} onChange={(e)=> setAglp(e.target.value)} />
                             </div>
-                            <div className={style.blogModal__form__program}>
-                                <h2>Tours Included</h2>
-                                <div className={style.blogModal__form__program__list}>
-                                    {tour_ids.map((item, index) => (
-                                        <ul key={index} className={style.blogModal__form__program__list__item}>
-                                            <li>{ data?.find(tour => tour._id === item).name }</li>
-                                        </ul>
-                                    ))}
-                                </div>
-                                <div className={style.blogModal__form__row}>
-                                    <select name="type" id="tour_id">
-                                        {data && data.map((item, index) => (
-                                            <option key={index} value={item._id}>{item.name}</option>
-                                        ))}
-                                    </select>
-                                    <button type="button" className={`${style.blogModal__btn} ${style.btn__green}`} onClick={addTourId}><FaPlus /></button>
-                                </div>
-                            </div>
-                            <div className={style.blogModal__form__row}>
-                                <label>Price</label>
-                                <input placeholder="Enter Tour Price" type="text" id="price" value={price} onChange={(e)=> setPrice(e.target.value)} />
-                            </div>
+                            
                             {/* <div className={style.blogModal__form__row}>
                                 <label>Details (write in markdown)</label>
                                 <textarea placeholder="Enter Article Details using markdown language" id="markdown" value={markdown} onChange={(e)=> setMarkdown(e.target.value)} ></textarea>
                             </div> */}
                             <button type='submit' className={`${style.blogModal__btn} ${style.btn__green}`}><FaPlus /> ADD PACKAGE</button>
-                            <Link target="_blank" style={{alignSelf: "flex-end", color: "#22c55e", marginTop: "32px"}} href="https://www.markdownguide.org/cheat-sheet/">Markdown Guide</Link>
                         </form>
                     </div>
                 </motion.div>

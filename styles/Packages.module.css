@@ -138,12 +138,13 @@
 }
 
 .blogcard{
-    width: 16rem;
-    height: 100px;
+    width: 400px;
+    height: 200px;
     box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
     background-color: #fff;
     border-radius: 12px;
     display: flex;
+    flex-direction: column;
     overflow: hidden;
     transition: .3s;
 }
@@ -151,10 +152,10 @@
     transform: scale(1.1);
 }
 .blogcard img{
-    height: 100%;
-    width: 33.33%;
-    object-fit: contain;
-    background-color: #FEA100;
+    height: 60%;
+    width: 100%;
+    object-fit: cover;
+    /* background-color: #FEA100; */
     /* background-color: #04ac3c; */
 }
 .blogcard__content{
@@ -235,7 +236,7 @@
     margin-top: 20px;
     margin-bottom: 40px;
     border-radius: 1rem;
-    background-color: #FEA100;
+    background-color: #00000033;
 }
 .blogModal__desc{
     color: #000;

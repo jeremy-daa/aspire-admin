@@ -1,9 +1,9 @@
 import style from "../../styles/Packages.module.css"
 import React from 'react'
 import TopSection from './TopSection'
-import BlogPaginator from './BlogPaginator'
-import ViewBlogModal from './ViewBlogModal'
-import EditBlogModal from './EditBlogModal'
+import BlogPaginator from './PackagePaginator'
+import ViewBlogModal from './ViewPackageModal'
+import EditBlogModal from './EditPackageModal'
 
 export default function Packages() {
   return (

@@ -8,7 +8,7 @@ const useDelete = async (url, id, token) => {
     }
 
     try {
-        const res = await fetch(`https://test.yuyana.com/${url}/${id}`, config);
+        const res = await fetch(`https://test.oneloveethiopiatour.com/api/${url}/${id}`, config);
         const json = await res.json();
         const data = json.data;
         return data;
