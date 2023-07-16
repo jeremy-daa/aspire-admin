@@ -12,12 +12,12 @@ export default function EventSearch() {
 
   const [filteredData, setFilteredData] = useState([]);
   const [word, setWord] = useState("");
-  const { data, loading, error } = useFetch("news");
+  const { data, loading, error } = useFetch("events");
 
   const handleSearch = (e) => {
     const keyword = e.target.value;
     // const newFilter = data.filter((article: any) => {
-    //   return article.title.toLowerCase().includes(keyword.toLowerCase())
+    //   return article.name.toLowerCase().includes(keyword.toLowerCase())
     // })
     if (keyword === "") {
       setFilteredData([]);
@@ -26,7 +26,7 @@ export default function EventSearch() {
 
     setFilteredData(
       data.filter((article) =>
-        article.title.toLowerCase().includes(keyword.toLowerCase())
+        article.name.toLowerCase().includes(keyword.toLowerCase())
       )
     );
     setWord(keyword);
@@ -73,7 +73,7 @@ export default function EventSearch() {
                     clearSearch();
                   }}
                 >
-                  {event.title.substr(0, 50)}
+                  {event.name.substr(0, 50)}
                 </p>
               </div>
             ))}

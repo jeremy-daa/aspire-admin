@@ -21,7 +21,7 @@ export default function EditEventModal() {
   const [err, setErr] = useState("");
 
   const [title, setTitle] = useState("");
-  const [snippet, setSnippet] = useState("");
+  const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [location, setLocation] = useState("");
@@ -31,7 +31,7 @@ export default function EditEventModal() {
     e.preventDefault();
     if (
       title === "" ||
-      snippet === "" ||
+      description === "" ||
       date === "" ||
       time === "" ||
       location === ""
@@ -44,7 +44,7 @@ export default function EditEventModal() {
     const img = document.getElementById("image").files[0];
     const imgData = new FormData();
     imgData.append("file", img);
-    imgData.append("upload_preset", "yuyana");
+    imgData.append("upload_preset", "aspire");
 
     const res = await fetch(
       "https://api.cloudinary.com/v1_1/drp73bqti/image/upload",
@@ -67,10 +67,10 @@ export default function EditEventModal() {
       setErr("");
       const image = json.secure_url;
       const body = { title, description, date, time, location, image };
-      const data = postReq("event", body, token);
+      const data = postReq("events", body, token);
       if (data) console.log(data);
       setTitle("");
-      setSnippet("");
+      setDescription("");
       setDate("");
       setTime("");
       setLocation("");
@@ -133,9 +133,9 @@ export default function EditEventModal() {
                     <label>Description</label>
                     <textarea
                       placeholder="Enter Article Description"
-                      id="snippet"
-                      value={snippet}
-                      onChange={(e) => setSnippet(e.target.value)}
+                      id="description"
+                      value={description}
+                      onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
                   </div>
 

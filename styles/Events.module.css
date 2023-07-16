@@ -218,13 +218,21 @@
 }
 .eventModal__title {
   color: #000;
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
 }
-.eventModal__date {
-  color: #374151;
-  font-size: 14px;
+.eventModal__date,
+.eventModal__time,
+.eventModal__location {
+  width: fit-content;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5;
+  background-color: #00a350;
+  border-radius: 50px;
+  padding: 5px 20px;
+  margin-bottom: 10px;
 }
 .eventModal__img {
   width: 100%;

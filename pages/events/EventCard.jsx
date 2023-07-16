@@ -1,62 +1,62 @@
-import style from "../../styles/Blogs.module.css";
+import style from "../../styles/Events.module.css";
 import Image from "next/image";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { toggleBlogModal } from "../../redux/slices/blogModalToggleSlice";
-import { changeActiveBlog } from "../../redux/slices/activeBlogSlice";
+import { toggleEventModal } from "../../redux/slices/eventModalToggleSlice";
+import { changeActiveEvent } from "../../redux/slices/activeEventSlice";
 
-export default function BlogCard({ d }) {
+export default function EventCard({ d }) {
   const dispatch = useAppDispatch();
-  const blogs = d;
-  const sortByNewest = useAppSelector((state) => state.sortBlogs.value);
-  const test = blogs.sort(
+  const events = d;
+  const sortByNewest = useAppSelector((state) => state.sortEvents.value);
+  const test = events.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
   return (
-    <div className={style.blogcards}>
-      <div className={style.blogcards__con}>
+    <div className={style.eventcards}>
+      <div className={style.eventcards__con}>
         {!sortByNewest &&
-          blogs.reverse().map((blog, index) => (
-            <div key={index} className={style.blogcard}>
+          events.reverse().map((event, index) => (
+            <div key={index} className={style.eventcard}>
               <Image
-                src={blog.image}
-                alt={blog.title.substr(0, 20)}
+                src={event.image}
+                alt={event.name.substr(0, 20)}
                 width={200}
                 height={200}
                 priority
               />
-              <div className={style.blogcard__content}>
-                <h2>{blog.title.substr(0, 30)}</h2>
+              <div className={style.eventcard__content}>
+                <h2>{event.name.substr(0, 30)}</h2>
                 <p
                   onClick={() => {
-                    dispatch(toggleBlogModal());
-                    dispatch(changeActiveBlog(blog));
+                    dispatch(toggleEventModal());
+                    dispatch(changeActiveEvent(event));
                   }}
                 >
-                  view blog
+                  view event
                 </p>
               </div>
             </div>
           ))}
         {sortByNewest &&
-          blogs.map((blog, index) => (
-            <div key={index} className={style.blogcard}>
+          events.map((event, index) => (
+            <div key={index} className={style.eventcard}>
               <Image
-                src={blog.image}
-                alt={blog.title.substr(0, 20)}
+                src={event.image}
+                alt={event.name.substr(0, 20)}
                 width={200}
                 height={200}
                 priority
               />
-              <div className={style.blogcard__content}>
-                <h2>{blog.title.substr(0, 30)}</h2>
+              <div className={style.eventcard__content}>
+                <h2>{event.name.substr(0, 30)}</h2>
                 <p
                   onClick={() => {
-                    dispatch(toggleBlogModal());
-                    dispatch(changeActiveBlog(blog));
+                    dispatch(toggleEventModal());
+                    dispatch(changeActiveEvent(event));
                   }}
                 >
-                  view blog
+                  view event
                 </p>
               </div>
             </div>

@@ -19,11 +19,11 @@ export default function ViewEventModal() {
     (state) => state.eventModalToggle.value
   );
   console.log(eventModalToggle);
-  const blogData = useAppSelector((state) => state.activeBlog);
+  const eventData = useAppSelector((state) => state.activeEvent);
   const token = useAppSelector((state) => state.login.admin);
 
   const deleteArticle = () => {
-    deleteReq("blogs", blogData._id, token);
+    deleteReq("events", eventData._id, token);
   };
 
   return (
@@ -35,40 +35,47 @@ export default function ViewEventModal() {
             initial={"closed"}
             animate={"open"}
             exit={"closed"}
-            className={style.blogModal}
+            className={style.eventModal}
           >
             <motion.div
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               transition={{ duration: 0.3 }}
-              className={style.blogModal__con}
+              className={style.eventModal__con}
             >
               <div
-                className={style.blogModal__close}
+                className={style.eventModal__close}
                 onClick={() => dispatch(toggleEventModal())}
               >
                 <GrClose />
               </div>
               <div style={{ width: "100%" }}>
-                <h1 className={style.blogModal__title}>{blogData.title}</h1>
-                <p className={style.blogModal__date}>
-                  {new Date(parseInt(blogData.createdAt)).toDateString()}
+                <h1 className={style.eventModal__title}>{eventData.name}</h1>
+                <p className={style.eventModal__date}>
+                  Date: {new Date(eventData.date).toDateString()}
                 </p>
+                <p className={style.eventModal__time}>
+                  Time: {new Date(eventData.date).toLocaleTimeString()}
+                </p>
+                <p className={style.eventModal__location}>
+                  Location: {eventData.location}
+                </p>
+
                 <Image
-                  src={blogData.image}
-                  alt={blogData.title}
+                  src={eventData.image}
+                  alt={eventData.title}
                   width={800}
                   height={400}
-                  className={style.blogModal__img}
+                  className={style.eventModal__img}
                 />
-                <p className={style.blogModal__desc}>{blogData.desc}</p>
+                <p className={style.eventModal__desc}>{eventData.desc}</p>
                 <div
-                  className="blog-modal-sanitized"
-                  dangerouslySetInnerHTML={{ __html: blogData.sanitizedHtml }}
+                  className="event-modal-sanitized"
+                  dangerouslySetInnerHTML={{ __html: eventData.sanitizedHtml }}
                 ></div>
               </div>
               <button
-                className={style.blogModal__btn}
+                className={style.eventModal__btn}
                 onClick={() => {
                   deleteArticle();
                   dispatch(toggleEventModal());
