@@ -23,18 +23,9 @@ export default function Sidebar() {
             case '/blog':
                 setActive('blog')
                 break
-            case '/newsletter':
-                setActive('newsletter')
-                break
-            case '/tours':
-                setActive('tours')
-                break
             // case '/packages':
             //     setActive('packages')
             //     break
-            case '/booking':
-                setActive('booking')
-                break
             default:
                 break
         }
@@ -62,30 +53,12 @@ export default function Sidebar() {
                     {isOpen && <p style={{transition: .3}}>Blog</p>}
                 </div>
             </Link>
-            <Link href='/newsletter' onClick={() => setActive('newsletter')} style={{textDecoration: "none"}} title="newsletter">
-                <div className={`${style.sidebar__item} ${active==='newsletter' && style.sidebar__item__active} `}>
-                    <GiNewspaper style={!isOpen && {flex: 1}} size={20}/>
-                    {isOpen && <p style={{transition: .3}}>Newsletter</p>}
-                </div>
-            </Link>
-            <Link href='/tours' onClick={() => setActive('tours')} style={{textDecoration: "none"}} title="tours">
-                <div className={`${style.sidebar__item} ${active==='tours' && style.sidebar__item__active} `}>
-                    <GiSurferVan style={!isOpen && {flex: 1}} size={20}/>
-                    {isOpen && <p style={{transition: .3}}>Tours</p>}
-                </div>
-            </Link>
             {/* <Link href='/packages' onClick={() => setActive('packages')} style={{textDecoration: "none"}} title="packages">
                 <div className={`${style.sidebar__item} ${active==='packages' && style.sidebar__item__active} `}>
                     <GoPackage style={!isOpen && {flex: 1}} size={20}/>
                     {isOpen && <p style={{transition: .3}}>Packages</p>}
                 </div>
             </Link> */}
-            <Link href='/booking' onClick={() => setActive('booking')} style={{textDecoration: "none"}} title="booking">
-                <div className={`${style.sidebar__item} ${active==='booking' && style.sidebar__item__active} `}>
-                    <FaUsers style={!isOpen && {flex: 1}} size={20}/>
-                    {isOpen && <p style={{transition: .3}}>Booking</p>}
-                </div>
-            </Link>
 
 
             <hr />

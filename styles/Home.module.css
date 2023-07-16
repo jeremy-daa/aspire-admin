@@ -217,7 +217,7 @@
 }
 .mainbody__card{
   min-width: 18rem;
-  height: 10rem;
+  min-height: 10rem;
   padding: 20px;
   border-radius: 0.5rem;
   background-color: #fff;
