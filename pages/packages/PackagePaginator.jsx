@@ -1,9 +1,9 @@
 'use client'
 import React,{useEffect, useState} from 'react'
 import ReactPaginate from "react-paginate";
-import BlogCard from './BlogCard'
+import BlogCard from './PackageCard'
 import useFetch from "../../hooks/useFetch"
-import BlogLoading from './BlogLoading';
+import BlogLoading from './PackageLoading';
 
 
 export default function BlogPaginator() {

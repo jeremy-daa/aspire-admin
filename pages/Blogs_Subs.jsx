@@ -7,11 +7,11 @@ import Link from 'next/link'
 export default function Blogs_Subs() {
     const [blogs, setBlogs] = useState(0)
     const [events, setEvents] = useState(0)
-    // const [packages, setPackages] = useState(0)
+    const [packages, setPackages] = useState(0)
 
     const { data: articlesData, loading: articlesLoading, error: articlesError } = useFetch("news")
     const { data: eventsData, loading: eventsLoading, error: eventsError } = useFetch("events")
-    // const { data: packagesData, loading: packagesLoading, error: packagesError } = useFetch("packages")
+    const { data: packagesData, loading: packagesLoading, error: packagesError } = useFetch("packages")
 
     useEffect(() => {
         if (articlesData) {
@@ -22,9 +22,9 @@ export default function Blogs_Subs() {
             setEvents(eventsData.length)
         }
 
-        // if (packagesData) {
-        //     setPackages(packagesData.length)
-        // }
+        if (packagesData) {
+            setPackages(packagesData.length)
+        }
 
     }, [ articlesData, eventsData ])
 
@@ -46,12 +46,12 @@ export default function Blogs_Subs() {
         </div>
         <div className={style.mainbody__cards}>
 
-            {/* <Link href='/packages' style={{flex: 1, textDecoration: "none"}} title='packages'>
+            <Link href='/packages' style={{flex: 1, textDecoration: "none"}} title='packages'>
                 <div className={style.mainbody__card}>
                     <h1>{packages}</h1>
                     <p>Packages</p>
                 </div>
-            </Link> */}
+            </Link>
             
         </div>
     </div>

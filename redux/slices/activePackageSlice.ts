@@ -5,26 +5,18 @@ import { RootState } from "../store";
 export interface Package {
     _id: any;
     name: string;
+    image: string;
     description: string;
-    type: string;
-    total_no_of_days: number;
-    tour_ids: string[],
-    price: number;
-    createdAt?: string;
-    updatedAt?: string;
+    aglp: number;
 }
 
 // define initial state
 const initialState: Package = {
     _id: "",
     name: "",
+    image: "",
     description: "",
-    type: "",
-    total_no_of_days: 0,
-    tour_ids: [],
-    price: 0,
-    createdAt: "",
-    updatedAt: "",
+    aglp: 0,
 };
 
 // create slice
@@ -38,13 +30,9 @@ export const activePackageSlice = createSlice({
         changeActivePackage: (state, action: PayloadAction<Package>) => {
             state._id = action.payload._id;
             state.name = action.payload.name;
+            state.image = action.payload.image;
             state.description = action.payload.description;
-            state.type = action.payload.type;
-            state.total_no_of_days = action.payload.total_no_of_days;
-            state.tour_ids = action.payload.tour_ids;
-            state.price = action.payload.price;
-            state.createdAt = action.payload.createdAt;
-            state.updatedAt = action.payload.updatedAt;
+            state.aglp = action.payload.aglp;
         },
     },
 });

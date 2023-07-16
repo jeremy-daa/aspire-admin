@@ -18,40 +18,14 @@ const variants = {
 export default function ViewBlogModal() {
     const dispatch = useAppDispatch()
     const blogModalToggle = useAppSelector(state => state.blogModalToggle.value)
-    const blogData = useAppSelector(state => state.activePackage)
+    const packageData = useAppSelector(state => state.activePackage)
     const token = useAppSelector((state) => state.login.admin)
 
     const deletePackage = () => {
-      deleteReq("packages", blogData._id, token)
+      deleteReq("packages", packageData._id, token)
     }
-    
-    const [tours, setTours] = useState([])
-    const { data, loading, error } = useFetch("tours")
 
-    useEffect(() => {
-
-      // if (data) {
-      //   if(blogModalToggle){
-      //     for(let i = 0; i < blogData.tour_ids.length; i++){
-      //       const tour = data.find((t) => t._id === blogData.tour_ids[i])
-      //       if(tour){
-      //         setTours([...tours, tour])
-      //       }
-      //     }
-      //   }
-      // }
-      // set the tours array state with the tours coming from fetching data that have the same _id property
-      // as the tour_ids array in the blogData state
-      if (data) {
-        if(blogModalToggle){
-          const tours = data.filter((tour) => blogData.tour_ids.includes(tour._id))
-          setTours(tours)
-        }
-      }
-
-    }, [data, loading, error, blogModalToggle])
-
-    // console.log(tours)
+    // console.log(packageData)
 
   return (
     <>
@@ -63,35 +37,35 @@ export default function ViewBlogModal() {
                   <GrClose />
                 </div>
                 <div style={{width: "100%"}}>
-                  <h1 className={style.blogModal__title}>{blogData.name}</h1>
-                  <p className={style.blogModal__date}>{blogData.type}</p>
-                  <Image src={"https://res.cloudinary.com/drp73bqti/image/upload/v1680720109/yuyana/location_loba4t.png"} alt={blogData.name} width={500} height={500} className={style.blogModal__img} />
-                  <p className={style.blogModal__desc}>{blogData.description}</p>
-                  {/* <div className="blog-modal-sanitized" dangerouslySetInnerHTML={{ __html: blogData.sanitizedHtml }} ></div> */}
+                  <h1 className={style.blogModal__title}>{packageData.name}</h1>
+                  {/* <p className={style.blogModal__date}>{packageData.type}</p> */}
+                  <Image src={packageData.image} alt={packageData.name} width={500} height={500} className={style.blogModal__img} />
+                  <p className={style.blogModal__desc}>{packageData.description}</p>
+                  {/* <div className="blog-modal-sanitized" dangerouslySetInnerHTML={{ __html: packageData.sanitizedHtml }} ></div> */}
 
-                  <p style={{fontWeight: "bold"}}>Total Days: {blogData.total_no_of_days}</p>
+                  <p style={{fontWeight: "bold"}}>AGLP: {packageData.aglp}</p>
 
-                  <div style={{display: "flex", flexWrap: "wrap", gap: "20px", marginTop: "30px", marginBottom: "30px"}}>
+                  {/* <div style={{display: "flex", flexWrap: "wrap", gap: "20px", marginTop: "30px", marginBottom: "30px"}}>
                     <ol style={{flex: "1"}}>
                       <h2 style={{marginBottom: "15px"}}>Tours Included</h2>
                       {tours.map((item, index) => (
                         <li key={index}>{item?.name}</li>
                       ))}
                     </ol>
-                  </div>
+                  </div> */}
                   {/* <div style={{display: "flex", alignItems: "center", flexWrap: "wrap", gap: "5px", marginBottom: "10px"}}>
                     <b>Keywords: </b> 
-                    {blogData.keywords.map((item, index) => (
+                    {packageData.keywords.map((item, index) => (
                       <p key={index}>{item + ","}</p>
                     ))}
                   </div> */}
-                  <p style={{fontWeight: "bold"}}>Price: {blogData.price}</p>
+                  {/* <p style={{fontWeight: "bold"}}>Price: {packageData.price}</p> */}
 
                 </div>
                 <button className={style.blogModal__btn} onClick={() => {
                     deletePackage()
                     dispatch(toggleBlogModal())
-                }} ><FaTrash /> DELETE TOUR</button>
+                }} ><FaTrash /> DELETE Package</button>
               </motion.div>
             </motion.div>
         )}
